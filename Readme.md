@@ -13,7 +13,7 @@ If you are running MacOS, I highly recommend [PostgresApp](https://github.com/Po
 
 ## Development
 
-	### Need
+### Need
 
 - Node 12+
 - [Rust](https://www.rust-lang.org/tools/install)
@@ -23,19 +23,19 @@ If you are running MacOS, I highly recommend [PostgresApp](https://github.com/Po
 1. Install dependencies
 
 ```bash
-$ yarn
+yarn
 ```
 
 2. Run Dev
 
 ``` bash
-$ yarn tauri dev
+yarn tauri dev
 ```
 
 ## Build 
 
 ```bash
-$ yarn tauri build
+yarn tauri build
 ```
 
 ## Stack
