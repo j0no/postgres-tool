@@ -23,19 +23,19 @@ If you are running MacOS, I highly recommend [PostgresApp](https://github.com/Po
 1. Install dependencies
 
 ```bash
-yarn
+yarn # or 'npm install'
 ```
 
 2. Run Dev
 
 ``` bash
-yarn tauri dev
+yarn tauri dev # or 'npm run tauri dev'
 ```
 
 ## Build 
 
 ```bash
-yarn tauri build
+yarn tauri build # or 'npm run tauri build'
 ```
 
 ## Stack
