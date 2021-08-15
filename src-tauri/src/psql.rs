@@ -54,32 +54,29 @@ pub fn stop_cmd() {
   
   
 pub fn status_cmd() -> CtlStatusResponse {
+
   let no_server_running = String::from("pg_ctl: no server running\n");
 
-  let cmd = match Command::new(get_ctl())
+  if let Ok(cmd) = Command::new(get_ctl())
     .arg("status")
     .arg("-D")
     .arg(get_pgdata())
     .stdout(Stdio::piped())
     .spawn() {
-      Err(why) => println!("couldnt spawn status: {}", why),
-      Ok(process) => process,
-  };
+    
+    let mut result = String::new();
+    
+    match cmd.stdout.unwrap().read_to_string(&mut result) {
+        Err(why) => panic!("couldn't read status stdout: {}", why),
+        Ok(_) => print!(""),
+    };
 
-  let mut result = String::new();
-
-  match cmd.stdout.unwrap().read_to_string(&mut result) {
-    Err(why) => panic!("couldn't read status stdout: {}", why),
-    Ok(_) => print!(""),
-  };
-
-  // println!("status_cmd(): {}",result);
-
-  if result.eq(&no_server_running) {
-    return CtlStatusResponse::NoServerRunning
-  } else if result.contains("pg_ctl: server is running") {
-    return CtlStatusResponse::ServerRunning
+    if result.eq(&no_server_running) {
+      return CtlStatusResponse::NoServerRunning
+    } else if result.contains("pg_ctl: server is running") {
+      return CtlStatusResponse::ServerRunning
+    }
   }
-
+  
   CtlStatusResponse::NoResponse
 }
