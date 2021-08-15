@@ -43,4 +43,4 @@ yarn tauri build
 - [Tauri](https://tauri.studio/) - Rust + Web
 
 ## Works on
-- Ubuntu 18.04
+- Ubuntu 18.04, 20.04
