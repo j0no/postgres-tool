@@ -62,18 +62,18 @@ pub fn status_cmd() -> CtlStatusResponse {
     .arg(get_pgdata())
     .stdout(Stdio::piped())
     .spawn() {
-      Err(why) => panic!("couldn't spawn xdpyinfo: {}", why),
+      Err(why) => println!("couldnt spawn status: {}", why),
       Ok(process) => process,
   };
 
   let mut result = String::new();
 
   match cmd.stdout.unwrap().read_to_string(&mut result) {
-    Err(why) => panic!("couldn't read wc stdout: {}", why),
+    Err(why) => panic!("couldn't read status stdout: {}", why),
     Ok(_) => print!(""),
   };
 
-  println!("status_cmd(): {}",result);
+  // println!("status_cmd(): {}",result);
 
   if result.eq(&no_server_running) {
     return CtlStatusResponse::NoServerRunning
