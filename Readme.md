@@ -1,6 +1,8 @@
 # Postgres Tool
 A postgres on and off switch for PostgreSQL on GTK+3.
 
+![screenshot](https://raw.githubusercontent.com/j0no/postgres-tool/main/res/postgres-tool-screenshot.png)
+
 ## Requirements
 - [Postgres without admin permission](https://saveriomiroddi.github.io/Quickly-setting-up-postgresql-for-running-without-admin-permissions/)
     Note: This setup is meant for development desktop environment. Do not use in production.
