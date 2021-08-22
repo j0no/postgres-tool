@@ -15,6 +15,8 @@ If you are running MacOS, I highly recommend [PostgresApp](https://github.com/Po
 
 ## Development
 
+Read the [Roadmap](Roadmap.md) if you want to contribute.
+
 ### Need
 
 - Node 12+
