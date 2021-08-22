@@ -2,7 +2,7 @@ use std::process::{Command, Child, Stdio};
 use std::io::{Read};
 use whoami::{username};
 
-const PGSQL_VERSION: &'static str = "10";
+const PGSQL_VERSION: &'static str = "11";
 
 pub enum CtlStatusResponse {
   NoServerRunning,
