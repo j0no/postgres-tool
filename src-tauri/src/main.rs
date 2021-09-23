@@ -3,9 +3,10 @@
   windows_subsystem = "windows"
 )]
 use tauri::{CustomMenuItem, SystemTray, SystemTrayMenu, SystemTrayMenuItem, SystemTrayEvent};
-use tauri::{Manager, AppHandle, App};
-use std::path::{Path, PathBuf};
-use whoami::{username};
+use tauri::{Manager, AppHandle};
+use std::path::{PathBuf};
+
+const SYSTEM_ICONS_DIR: &'static str = "/usr/lib/postgres-tool/icons";
 
 mod psql;
 use psql::{start_cmd, status_cmd, stop_cmd, CtlStatusResponse};
@@ -14,17 +15,17 @@ fn get_status_icon_pathbuf() -> PathBuf {
   match status_cmd() {
     CtlStatusResponse::NoServerRunning => {
       let mut path = PathBuf::new();
-      path.push(format!("/home/{}/Projects/postgres-tool/src-tauri/icons/off.png", username()));
+      path.push(format!("{}/system-tray-icons/off.png", SYSTEM_ICONS_DIR));
       return path;
     },
     CtlStatusResponse::ServerRunning => {
       let mut path = PathBuf::new();
-      path.push(format!("/home/{}/Projects/postgres-tool/src-tauri/icons/on.png", username()));
+      path.push(format!("{}/system-tray-icons/on.png", SYSTEM_ICONS_DIR));
       return path;
     },
     CtlStatusResponse::NoResponse => {
       let mut path = PathBuf::new();
-      path.push(format!("/home/{}/Projects/postgres-tool/src-tauri/icons/off.png", username()));
+      path.push(format!("{}/system-tray-icons/off.png", SYSTEM_ICONS_DIR));
       return path;
     }
   }
@@ -56,7 +57,7 @@ fn main() {
     .with_menu(tray_menu)
     .with_icon(tauri::Icon::File(status_icon_path));
   
-  let mut app = tauri::Builder::default()
+  let app = tauri::Builder::default()
     .setup(|app| {
       let main_window = app.get_window("main").unwrap();
       main_window.hide().unwrap();

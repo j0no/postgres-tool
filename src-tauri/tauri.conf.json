@@ -1,6 +1,6 @@
 {
   "package": {
-    "productName": "postgrestool",
+    "productName": "postgres-tool",
     "version": "0.1.0"
   },
   "build": {
@@ -25,7 +25,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "resources": [],
+      "resources": ["icons/system-tray-icons"],
       "externalBin": [],
       "copyright": "",
       "category": "DeveloperTool",

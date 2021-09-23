@@ -1,22 +1,12 @@
-use std::process::{Command, Child, Stdio};
+use std::process::{Command, Stdio};
 use std::io::{Read};
-use whoami::{username};
+use dirs::{home_dir};
 
 const PGSQL_VERSION: &'static str = "11";
 
 pub enum CtlStatusResponse {
   NoServerRunning,
   ServerRunning,
-  NoResponse
-}
-
-pub enum CtlStartResponse {
-  ServerStarted,
-  NoResponse
-}
-
-pub enum CtlStopResponse {
-  NoServerToStop,
   NoResponse
 }
 
@@ -30,7 +20,10 @@ fn get_ctl() -> String {
 }
   
 fn get_pgdata() -> String {
-  format!("/home/{}/databases/pgsql_data", username())
+  let mut home_directory = home_dir().unwrap();
+  home_directory.push("databases");
+  home_directory.push("pgsql_data");
+  home_directory.into_os_string().into_string().unwrap()
 }
 
 pub fn start_cmd() {
