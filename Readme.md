@@ -47,4 +47,5 @@ yarn tauri build # or 'npm run tauri build'
 - [Tauri](https://tauri.studio/) - Rust + Web
 
 ## Works on
-- Ubuntu 18.04, 20.04
+- Ubuntu 18.04, 20.04, 21.04
+- Pop!_OS 21.04
